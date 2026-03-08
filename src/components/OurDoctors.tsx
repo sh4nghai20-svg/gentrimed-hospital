@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { User } from 'lucide-react';
+import Link from 'next/link';
 import { useContent } from '@/context/ContentContext';
 
 
@@ -102,16 +103,37 @@ export default function OurDoctors() {
                 </p>
 
                 {/* Button */}
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-2 rounded-lg font-semibold hover:shadow-lg transition-shadow"
-                >
-                  Book with {doctor.name.split(' ')[1]}
-                </motion.button>
+                <Link href="/booking">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-2 rounded-lg font-semibold hover:shadow-lg transition-shadow"
+                  >
+                    Book with {doctor.name.split(' ')[1]}
+                  </motion.button>
+                </Link>
               </div>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* View All Doctors Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          viewport={{ once: true }}
+          className="flex justify-center mt-16"
+        >
+          <Link href="/doctors">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-gradient-to-r from-green-500 to-green-600 text-white px-10 py-4 rounded-lg font-bold text-lg hover:shadow-lg transition-shadow"
+            >
+              View All Doctors
+            </motion.button>
+          </Link>
         </motion.div>
       </div>
     </section>

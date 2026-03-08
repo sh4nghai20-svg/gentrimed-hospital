@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { useContent } from '@/context/ContentContext';
 
@@ -59,13 +60,15 @@ export default function AppointmentCTA() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row justify-center items-center gap-4"
           >
-            <motion.button
-              whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(6, 182, 212, 0.4)' }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-green-500 to-green-600 text-white px-10 py-4 rounded-lg font-bold text-lg hover:shadow-2xl transition-all"
-            >
-              Book Appointment
-            </motion.button>
+            <Link href="/booking">
+              <motion.button
+                whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(6, 182, 212, 0.4)' }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-10 py-4 rounded-lg font-bold text-lg hover:shadow-2xl transition-all"
+              >
+                Book Appointment
+              </motion.button>
+            </Link>
 
             <motion.button
               whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(255, 255, 255, 0.2)' }}

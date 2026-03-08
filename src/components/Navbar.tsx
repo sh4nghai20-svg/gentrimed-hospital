@@ -17,17 +17,26 @@ export default function Navbar() {
   const getHref = (item: string) => {
     const isOnServicePage = pathname.startsWith('/services/');
     const isOnAboutPage = pathname === '/about-us';
+    const isOnBookingPage = pathname === '/booking';
+    const isOnDoctorsPage = pathname === '/doctors';
+    
     if (item === 'Home') {
-      return (isOnServicePage || isOnAboutPage) ? '/' : '#home';
+      return (isOnServicePage || isOnAboutPage || isOnBookingPage || isOnDoctorsPage) ? '/' : '#home';
     }
     if (item === 'About Us') {
       return '/about-us';
+    }
+    if (item === 'Doctors') {
+      return '/doctors';
+    }
+    if (item === 'Services') {
+      return (isOnServicePage || isOnAboutPage || isOnBookingPage || isOnDoctorsPage) ? '/#services' : '#services';
     }
     if (item === 'Contact') {
       return null; // Will be handled by modal
     }
     const section = item.toLowerCase().replace(' ', '-');
-    return (isOnServicePage || isOnAboutPage) ? `/#${section}` : `#${section}`;
+    return (isOnServicePage || isOnAboutPage || isOnBookingPage || isOnDoctorsPage) ? `/#${section}` : `#${section}`;
   };
 
   const handleNavClick = (item: string) => {
@@ -89,13 +98,15 @@ export default function Navbar() {
           </div>
 
           {/* Desktop CTA Button */}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="hidden md:block bg-green-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors"
-          >
-            Book Appointment
-          </motion.button>
+          <Link href="/booking">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="hidden md:block bg-green-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors"
+            >
+              Book Appointment
+            </motion.button>
+          </Link>
 
           {/* Mobile Menu Button */}
           <button
@@ -128,12 +139,14 @@ export default function Navbar() {
                 </motion.div>
               );
             })}
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              className="w-full mt-4 bg-green-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors"
-            >
-              Book Appointment
-            </motion.button>
+            <Link href="/booking" className="block w-full">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                className="w-full mt-4 bg-green-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors"
+              >
+                Book Appointment
+              </motion.button>
+            </Link>
           </div>
         </motion.div>
       </div>
