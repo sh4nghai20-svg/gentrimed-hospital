@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { useContent, Service, Doctor, ContactInfo, NewsItem, DepartmentContact } from '@/context/ContentContext';
 import { motion } from 'framer-motion';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 export default function AdminPage() {
   const { services, setServices, doctors, setDoctors, slides, setSlides, testimonials, setTestimonials, news, setNews, contact, setContact } = useContent();
@@ -120,8 +122,10 @@ export default function AdminPage() {
   };
 
   return (
-    <main className="p-8 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
+    <main className="w-full overflow-x-hidden">
+      <Navbar />
+      <div className="p-8 max-w-4xl mx-auto pt-24">
+        <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
 
       <section className="mb-10">
         <h2 className="text-2xl font-semibold mb-4">Contact Information</h2>
@@ -432,6 +436,8 @@ export default function AdminPage() {
           Add Doctor
         </button>
       </section>
+      </div>
+      <Footer />
     </main>
   );
 }

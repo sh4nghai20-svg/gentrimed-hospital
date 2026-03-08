@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { User, Mail, Phone } from 'lucide-react';
 import Link from 'next/link';
 import { useContent } from '@/context/ContentContext';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 export default function DoctorsPage() {
   const { doctors } = useContent();
@@ -30,31 +32,34 @@ export default function DoctorsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-24 pb-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">
-            Our Medical Team
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Meet our highly qualified and experienced doctors dedicated to providing
-            exceptional healthcare services to our patients.
-          </p>
-        </motion.div>
+    
+    <main className="w-full overflow-x-hidden">
+      <Navbar />
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-24 pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h1 className="text-5xl font-bold text-gray-900 mb-4">
+              Our Medical Team
+            </h1>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Meet our highly qualified and experienced doctors dedicated to providing
+              exceptional healthcare services to our patients.
+            </p>
+          </motion.div>
 
-        {/* Doctors Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
+          {/* Doctors Grid */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
           {doctors.map((doctor) => (
             <motion.div
               key={doctor.id}
@@ -130,19 +135,21 @@ export default function DoctorsPage() {
           ))}
         </motion.div>
 
-        {/* Empty State */}
-        {doctors.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-16"
-          >
-            <p className="text-xl text-gray-600">
-              No doctors available at the moment.
-            </p>
-          </motion.div>
-        )}
+          {/* Empty State */}
+          {doctors.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-16"
+            >
+              <p className="text-xl text-gray-600">
+                No doctors available at the moment.
+              </p>
+            </motion.div>
+          )}
+        </div>
       </div>
-    </div>
+      <Footer />
+    </main>
   );
 }

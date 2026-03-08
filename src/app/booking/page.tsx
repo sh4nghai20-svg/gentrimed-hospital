@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, User, Mail, Phone, Clock, MapPin } from 'lucide-react';
 import { useContent } from '@/context/ContentContext';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 export default function BookingPage() {
   const { doctors, services, contact } = useContent();
@@ -31,24 +33,26 @@ export default function BookingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white pt-24 pb-16">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">
-            Book Your Appointment
-          </h1>
-          <p className="text-xl text-gray-600">
-            Schedule a visit with our expert medical professionals
-          </p>
-        </motion.div>
+    <main className="w-full overflow-x-hidden">
+      <Navbar />
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white pt-24 pb-16">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h1 className="text-5xl font-bold text-gray-900 mb-4">
+              Book Your Appointment
+            </h1>
+            <p className="text-xl text-gray-600">
+              Schedule a visit with our expert medical professionals
+            </p>
+          </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Booking Form */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -262,6 +266,8 @@ export default function BookingPage() {
           </motion.div>
         </div>
       </div>
-    </div>
+      </div>
+      <Footer />
+    </main>
   );
 }
